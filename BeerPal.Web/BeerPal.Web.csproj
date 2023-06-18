@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+		
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+		
+		<PackageReference Include="Braintree" Version="5.18.0" />
+		<PackageReference Include="PayPal" Version="2.0.0-beta00" />
+		<PackageReference Include="Stripe.net" Version="12.1.0" />
+	</ItemGroup>	
+
+	<ItemGroup>
+		<None Include="Areas\PayPal\Views\Home\About.cshtml" />
+		<None Include="Areas\PayPal\Views\Home\Contact.cshtml" />
+		<None Include="Areas\PayPal\Views\Home\Index.cshtml" />
+		<None Include="wwwroot\js\site.js" />
+		<None Include="wwwroot\js\site.min.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Areas\PayPal\Data\" />
+		<Folder Include="Areas\Braintree\Data\" />
+		<Folder Include="Areas\Stripe\Data\" />
+	</ItemGroup>
+
+</Project>

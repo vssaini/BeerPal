@@ -1,0 +1,62 @@
+﻿@model PayPal.Payments.PaymentHistory
+
+@{
+    ViewBag.Title = "Sales";
+}
+
+<div class="heads" style="background: url(/public/img/brewery-back1.jpg) 50% 27%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><span>//</span> Sales</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row confirm">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Created Date</th>
+                            <th>Payment Status</th>
+                            <th class="text-right">Total</th>
+                            <th class="text-right">Sale Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var payment in Model.Payments)
+                        {
+                            <tr>
+                                <td>@payment.Id</td>
+                                <td>@payment.CreateTime</td>
+                                <td>@payment.State</td>
+                                <td class="text-right">$@(decimal.Parse(payment.Transactions.First().Amount.Total).ToString("0.00"))</td>
+                                <td class="text-right">@(payment.Transactions.First().RelatedResources.First(x => x.Sale != null).Sale.State)</td>
+                                <td class="text-right">
+                                    @if (payment.Transactions.First().RelatedResources.First(x => x.Sale != null).Sale.State == "refunded")
+                                    {
+                                        <button type="button" class="btn btn-warning" disabled>Refunded</button>
+                                    }
+                                    else
+                                    {
+                                        using (Html.BeginForm("Refund", "Sales", FormMethod.Post))
+                                         {
+                                             @Html.Hidden("saleId", payment.Transactions.First().RelatedResources.First(x => x.Sale != null).Sale.Id)
+                                             <button type="submit" class="btn btn-warning">Refund</button>
+                                         }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

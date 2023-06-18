@@ -1,0 +1,49 @@
+﻿@using Newtonsoft.Json
+@model  List<PayPal.PaymentExperience.WebProfile>
+
+    @{
+        ViewBag.Title = "Web Experience Profiles";
+    }
+
+    <div class="heads" style="background: url(/public/img/brewery-back1.jpg) 50% 27%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><span>//</span> Web Experience Profiles</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- begin:content -->
+<div class="page-content">
+    <div class="container">
+        <div class="row confirm">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Flow Config</th>
+                        <th>Input Fields</th>
+                        <th>Presentation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var profile in Model)
+                    {
+                        <tr>
+                            <td>@profile.Id</td>
+                            <td>@profile.Name</td>
+                            <td>@JsonConvert.SerializeObject(profile.FlowConfig)</td>
+                            <td>@JsonConvert.SerializeObject(profile.InputFields)</td>
+                            <td>@JsonConvert.SerializeObject(profile.Presentation)</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
